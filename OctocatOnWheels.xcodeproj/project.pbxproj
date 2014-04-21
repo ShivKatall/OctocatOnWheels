@@ -1,0 +1,497 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3D1F00981905C25600BFE288 /* burger-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D1F00971905C25600BFE288 /* burger-icon.png */; };
+		3D2DCA8119057D4600677825 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D2DCA8019057D4600677825 /* Foundation.framework */; };
+		3D2DCA8319057D4600677825 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D2DCA8219057D4600677825 /* CoreGraphics.framework */; };
+		3D2DCA8519057D4600677825 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D2DCA8419057D4600677825 /* UIKit.framework */; };
+		3D2DCA8B19057D4600677825 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D2DCA8919057D4600677825 /* InfoPlist.strings */; };
+		3D2DCA8D19057D4600677825 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2DCA8C19057D4600677825 /* main.m */; };
+		3D2DCA9119057D4600677825 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2DCA9019057D4600677825 /* AppDelegate.m */; };
+		3D2DCA9419057D4600677825 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D2DCA9219057D4600677825 /* Main.storyboard */; };
+		3D2DCA9919057D4600677825 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D2DCA9819057D4600677825 /* Images.xcassets */; };
+		3D2DCAA019057D4600677825 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D2DCA9F19057D4600677825 /* XCTest.framework */; };
+		3D2DCAA119057D4600677825 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D2DCA8019057D4600677825 /* Foundation.framework */; };
+		3D2DCAA219057D4600677825 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D2DCA8419057D4600677825 /* UIKit.framework */; };
+		3D2DCAAA19057D4700677825 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D2DCAA819057D4700677825 /* InfoPlist.strings */; };
+		3D2DCAAC19057D4700677825 /* OctocatOnWheelsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2DCAAB19057D4700677825 /* OctocatOnWheelsTests.m */; };
+		3D2DCAB719057DCB00677825 /* RootMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2DCAB619057DCB00677825 /* RootMenuViewController.m */; };
+		3D2DCABA19057E9400677825 /* ReposViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2DCAB919057E9400677825 /* ReposViewController.m */; };
+		3D2DCABD19057ED500677825 /* UsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2DCABC19057ED500677825 /* UsersViewController.m */; };
+		3D2DCAC019057EE600677825 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2DCABF19057EE600677825 /* SearchViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3D2DCAA319057D4600677825 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3D2DCA7519057D4600677825 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3D2DCA7C19057D4600677825;
+			remoteInfo = OctocatOnWheels;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3D1F00971905C25600BFE288 /* burger-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "burger-icon.png"; sourceTree = "<group>"; };
+		3D1F00991905C2F200BFE288 /* BurgerButtonProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BurgerButtonProtocol.h; sourceTree = "<group>"; };
+		3D2DCA7D19057D4600677825 /* OctocatOnWheels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OctocatOnWheels.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D2DCA8019057D4600677825 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3D2DCA8219057D4600677825 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		3D2DCA8419057D4600677825 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3D2DCA8819057D4600677825 /* OctocatOnWheels-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OctocatOnWheels-Info.plist"; sourceTree = "<group>"; };
+		3D2DCA8A19057D4600677825 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3D2DCA8C19057D4600677825 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3D2DCA8E19057D4600677825 /* OctocatOnWheels-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OctocatOnWheels-Prefix.pch"; sourceTree = "<group>"; };
+		3D2DCA8F19057D4600677825 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3D2DCA9019057D4600677825 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3D2DCA9319057D4600677825 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3D2DCA9819057D4600677825 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		3D2DCA9E19057D4600677825 /* OctocatOnWheelsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OctocatOnWheelsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D2DCA9F19057D4600677825 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		3D2DCAA719057D4700677825 /* OctocatOnWheelsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OctocatOnWheelsTests-Info.plist"; sourceTree = "<group>"; };
+		3D2DCAA919057D4700677825 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3D2DCAAB19057D4700677825 /* OctocatOnWheelsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OctocatOnWheelsTests.m; sourceTree = "<group>"; };
+		3D2DCAB519057DCB00677825 /* RootMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootMenuViewController.h; sourceTree = "<group>"; };
+		3D2DCAB619057DCB00677825 /* RootMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootMenuViewController.m; sourceTree = "<group>"; };
+		3D2DCAB819057E9400677825 /* ReposViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReposViewController.h; sourceTree = "<group>"; };
+		3D2DCAB919057E9400677825 /* ReposViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReposViewController.m; sourceTree = "<group>"; };
+		3D2DCABB19057ED500677825 /* UsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersViewController.h; sourceTree = "<group>"; };
+		3D2DCABC19057ED500677825 /* UsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersViewController.m; sourceTree = "<group>"; };
+		3D2DCABE19057EE600677825 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		3D2DCABF19057EE600677825 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3D2DCA7A19057D4600677825 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D2DCA8319057D4600677825 /* CoreGraphics.framework in Frameworks */,
+				3D2DCA8519057D4600677825 /* UIKit.framework in Frameworks */,
+				3D2DCA8119057D4600677825 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D2DCA9B19057D4600677825 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D2DCAA019057D4600677825 /* XCTest.framework in Frameworks */,
+				3D2DCAA219057D4600677825 /* UIKit.framework in Frameworks */,
+				3D2DCAA119057D4600677825 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3D2DCA7419057D4600677825 = {
+			isa = PBXGroup;
+			children = (
+				3D2DCA8619057D4600677825 /* OctocatOnWheels */,
+				3D2DCAA519057D4600677825 /* OctocatOnWheelsTests */,
+				3D2DCA7F19057D4600677825 /* Frameworks */,
+				3D2DCA7E19057D4600677825 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3D2DCA7E19057D4600677825 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3D2DCA7D19057D4600677825 /* OctocatOnWheels.app */,
+				3D2DCA9E19057D4600677825 /* OctocatOnWheelsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3D2DCA7F19057D4600677825 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3D2DCA8019057D4600677825 /* Foundation.framework */,
+				3D2DCA8219057D4600677825 /* CoreGraphics.framework */,
+				3D2DCA8419057D4600677825 /* UIKit.framework */,
+				3D2DCA9F19057D4600677825 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3D2DCA8619057D4600677825 /* OctocatOnWheels */ = {
+			isa = PBXGroup;
+			children = (
+				3D2DCA8F19057D4600677825 /* AppDelegate.h */,
+				3D2DCA9019057D4600677825 /* AppDelegate.m */,
+				3D2DCA9219057D4600677825 /* Main.storyboard */,
+				3D2DCAB519057DCB00677825 /* RootMenuViewController.h */,
+				3D2DCAB619057DCB00677825 /* RootMenuViewController.m */,
+				3D2DCAB819057E9400677825 /* ReposViewController.h */,
+				3D2DCAB919057E9400677825 /* ReposViewController.m */,
+				3D2DCABB19057ED500677825 /* UsersViewController.h */,
+				3D2DCABC19057ED500677825 /* UsersViewController.m */,
+				3D2DCABE19057EE600677825 /* SearchViewController.h */,
+				3D2DCABF19057EE600677825 /* SearchViewController.m */,
+				3D1F00991905C2F200BFE288 /* BurgerButtonProtocol.h */,
+				3D2DCA9819057D4600677825 /* Images.xcassets */,
+				3D2DCA8719057D4600677825 /* Supporting Files */,
+			);
+			path = OctocatOnWheels;
+			sourceTree = "<group>";
+		};
+		3D2DCA8719057D4600677825 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3D1F00971905C25600BFE288 /* burger-icon.png */,
+				3D2DCA8819057D4600677825 /* OctocatOnWheels-Info.plist */,
+				3D2DCA8919057D4600677825 /* InfoPlist.strings */,
+				3D2DCA8C19057D4600677825 /* main.m */,
+				3D2DCA8E19057D4600677825 /* OctocatOnWheels-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3D2DCAA519057D4600677825 /* OctocatOnWheelsTests */ = {
+			isa = PBXGroup;
+			children = (
+				3D2DCAAB19057D4700677825 /* OctocatOnWheelsTests.m */,
+				3D2DCAA619057D4600677825 /* Supporting Files */,
+			);
+			path = OctocatOnWheelsTests;
+			sourceTree = "<group>";
+		};
+		3D2DCAA619057D4600677825 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3D2DCAA719057D4700677825 /* OctocatOnWheelsTests-Info.plist */,
+				3D2DCAA819057D4700677825 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3D2DCA7C19057D4600677825 /* OctocatOnWheels */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3D2DCAAF19057D4700677825 /* Build configuration list for PBXNativeTarget "OctocatOnWheels" */;
+			buildPhases = (
+				3D2DCA7919057D4600677825 /* Sources */,
+				3D2DCA7A19057D4600677825 /* Frameworks */,
+				3D2DCA7B19057D4600677825 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OctocatOnWheels;
+			productName = OctocatOnWheels;
+			productReference = 3D2DCA7D19057D4600677825 /* OctocatOnWheels.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3D2DCA9D19057D4600677825 /* OctocatOnWheelsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3D2DCAB219057D4700677825 /* Build configuration list for PBXNativeTarget "OctocatOnWheelsTests" */;
+			buildPhases = (
+				3D2DCA9A19057D4600677825 /* Sources */,
+				3D2DCA9B19057D4600677825 /* Frameworks */,
+				3D2DCA9C19057D4600677825 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3D2DCAA419057D4600677825 /* PBXTargetDependency */,
+			);
+			name = OctocatOnWheelsTests;
+			productName = OctocatOnWheelsTests;
+			productReference = 3D2DCA9E19057D4600677825 /* OctocatOnWheelsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3D2DCA7519057D4600677825 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Cole Bratcher";
+				TargetAttributes = {
+					3D2DCA9D19057D4600677825 = {
+						TestTargetID = 3D2DCA7C19057D4600677825;
+					};
+				};
+			};
+			buildConfigurationList = 3D2DCA7819057D4600677825 /* Build configuration list for PBXProject "OctocatOnWheels" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3D2DCA7419057D4600677825;
+			productRefGroup = 3D2DCA7E19057D4600677825 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3D2DCA7C19057D4600677825 /* OctocatOnWheels */,
+				3D2DCA9D19057D4600677825 /* OctocatOnWheelsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3D2DCA7B19057D4600677825 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D2DCA9919057D4600677825 /* Images.xcassets in Resources */,
+				3D2DCA8B19057D4600677825 /* InfoPlist.strings in Resources */,
+				3D2DCA9419057D4600677825 /* Main.storyboard in Resources */,
+				3D1F00981905C25600BFE288 /* burger-icon.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D2DCA9C19057D4600677825 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D2DCAAA19057D4700677825 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3D2DCA7919057D4600677825 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D2DCABA19057E9400677825 /* ReposViewController.m in Sources */,
+				3D2DCA9119057D4600677825 /* AppDelegate.m in Sources */,
+				3D2DCABD19057ED500677825 /* UsersViewController.m in Sources */,
+				3D2DCA8D19057D4600677825 /* main.m in Sources */,
+				3D2DCAB719057DCB00677825 /* RootMenuViewController.m in Sources */,
+				3D2DCAC019057EE600677825 /* SearchViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D2DCA9A19057D4600677825 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D2DCAAC19057D4700677825 /* OctocatOnWheelsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3D2DCAA419057D4600677825 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3D2DCA7C19057D4600677825 /* OctocatOnWheels */;
+			targetProxy = 3D2DCAA319057D4600677825 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3D2DCA8919057D4600677825 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3D2DCA8A19057D4600677825 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3D2DCA9219057D4600677825 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3D2DCA9319057D4600677825 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3D2DCAA819057D4700677825 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3D2DCAA919057D4700677825 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3D2DCAAD19057D4700677825 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		3D2DCAAE19057D4700677825 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3D2DCAB019057D4700677825 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OctocatOnWheels/OctocatOnWheels-Prefix.pch";
+				INFOPLIST_FILE = "OctocatOnWheels/OctocatOnWheels-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3D2DCAB119057D4700677825 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OctocatOnWheels/OctocatOnWheels-Prefix.pch";
+				INFOPLIST_FILE = "OctocatOnWheels/OctocatOnWheels-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		3D2DCAB319057D4700677825 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/OctocatOnWheels.app/OctocatOnWheels";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OctocatOnWheels/OctocatOnWheels-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "OctocatOnWheelsTests/OctocatOnWheelsTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		3D2DCAB419057D4700677825 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/OctocatOnWheels.app/OctocatOnWheels";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OctocatOnWheels/OctocatOnWheels-Prefix.pch";
+				INFOPLIST_FILE = "OctocatOnWheelsTests/OctocatOnWheelsTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3D2DCA7819057D4600677825 /* Build configuration list for PBXProject "OctocatOnWheels" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D2DCAAD19057D4700677825 /* Debug */,
+				3D2DCAAE19057D4700677825 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3D2DCAAF19057D4700677825 /* Build configuration list for PBXNativeTarget "OctocatOnWheels" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D2DCAB019057D4700677825 /* Debug */,
+				3D2DCAB119057D4700677825 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3D2DCAB219057D4700677825 /* Build configuration list for PBXNativeTarget "OctocatOnWheelsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D2DCAB319057D4700677825 /* Debug */,
+				3D2DCAB419057D4700677825 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3D2DCA7519057D4600677825 /* Project object */;
+}
