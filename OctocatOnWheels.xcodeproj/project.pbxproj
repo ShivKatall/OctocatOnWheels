@@ -25,6 +25,8 @@
 		3D2DCABA19057E9400677825 /* ReposViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2DCAB919057E9400677825 /* ReposViewController.m */; };
 		3D2DCABD19057ED500677825 /* UsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2DCABC19057ED500677825 /* UsersViewController.m */; };
 		3D2DCAC019057EE600677825 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2DCABF19057EE600677825 /* SearchViewController.m */; };
+		3DA293A4190702DE005F179C /* NetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA293A3190702DE005F179C /* NetworkController.m */; };
+		3DA293A719072A36005F179C /* Repo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA293A619072A36005F179C /* Repo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,10 @@
 		3D2DCABC19057ED500677825 /* UsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersViewController.m; sourceTree = "<group>"; };
 		3D2DCABE19057EE600677825 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		3D2DCABF19057EE600677825 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		3DA293A2190702DE005F179C /* NetworkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkController.h; sourceTree = "<group>"; };
+		3DA293A3190702DE005F179C /* NetworkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkController.m; sourceTree = "<group>"; };
+		3DA293A519072A36005F179C /* Repo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Repo.h; sourceTree = "<group>"; };
+		3DA293A619072A36005F179C /* Repo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Repo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +133,8 @@
 				3D2DCA8F19057D4600677825 /* AppDelegate.h */,
 				3D2DCA9019057D4600677825 /* AppDelegate.m */,
 				3D2DCA9219057D4600677825 /* Main.storyboard */,
+				3DA293A2190702DE005F179C /* NetworkController.h */,
+				3DA293A3190702DE005F179C /* NetworkController.m */,
 				3D2DCAB519057DCB00677825 /* RootMenuViewController.h */,
 				3D2DCAB619057DCB00677825 /* RootMenuViewController.m */,
 				3D2DCAB819057E9400677825 /* ReposViewController.h */,
@@ -136,6 +144,8 @@
 				3D2DCABE19057EE600677825 /* SearchViewController.h */,
 				3D2DCABF19057EE600677825 /* SearchViewController.m */,
 				3D1F00991905C2F200BFE288 /* BurgerButtonProtocol.h */,
+				3DA293A519072A36005F179C /* Repo.h */,
+				3DA293A619072A36005F179C /* Repo.m */,
 				3D2DCA9819057D4600677825 /* Images.xcassets */,
 				3D2DCA8719057D4600677825 /* Supporting Files */,
 			);
@@ -274,8 +284,10 @@
 				3D2DCA9119057D4600677825 /* AppDelegate.m in Sources */,
 				3D2DCABD19057ED500677825 /* UsersViewController.m in Sources */,
 				3D2DCA8D19057D4600677825 /* main.m in Sources */,
+				3DA293A4190702DE005F179C /* NetworkController.m in Sources */,
 				3D2DCAB719057DCB00677825 /* RootMenuViewController.m in Sources */,
 				3D2DCAC019057EE600677825 /* SearchViewController.m in Sources */,
+				3DA293A719072A36005F179C /* Repo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,26 +7,32 @@
 //
 
 #import "ReposViewController.h"
+#import "AppDelegate.h"
+#import "Repo.h"
 
-@interface ReposViewController ()
+@interface ReposViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, NSURLSessionDelegate, NetworkControllerDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *reposTableView;
+
+@property (strong, nonatomic) NSMutableArray *arrayOfRepos;
+
+@property (weak, nonatomic) AppDelegate *appDelegate;
+@property (weak, nonatomic) NetworkController *networkController;
 
 @end
 
 @implementation ReposViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.appDelegate = [UIApplication sharedApplication].delegate;
+    self.networkController = self.appDelegate.networkController;
+    
+    [self.networkController retrieveReposForCurrentUser];
+    
+    self.networkController.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -39,6 +45,34 @@
 {
     [self.burgerDelegate handleBurgerPressed];
 }
+
+-(void)reposDoneDownloading:(NSMutableArray *)repoArray
+{
+    self.arrayOfRepos = repoArray;
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self.reposTableView reloadData];
+    }];
+}
+
+# pragma mark - UITableView Methods
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.arrayOfRepos.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *repoCell = [tableView dequeueReusableCellWithIdentifier:@"RepoCell" forIndexPath:indexPath];
+    
+    Repo *repo = self.arrayOfRepos[indexPath.row];
+    
+    repoCell.textLabel.text = repo.name;
+    
+    return repoCell;
+}
+
+
 
 /*
 #pragma mark - Navigation
