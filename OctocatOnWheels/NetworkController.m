@@ -15,6 +15,12 @@
 #define GITHUB_OAUTH_URL @"https://github.com/login/oauth/authorize?client_id=%@&redirect_uri=%@&scope=%@" // Study and learn this line better.
 #define GITHUB_API_URL @"https://api.github.com/"
 
+@interface NetworkController ()
+
+@property (nonatomic, strong)NSURLSession *urlSession;
+
+@end
+
 @implementation NetworkController
 
 -(id)init
@@ -22,6 +28,8 @@
     self = [super init];
     if (self)
     {
+        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        
         self.token = [[NSUserDefaults standardUserDefaults] objectForKey:@"oauthtoken"];
         
         if (!self.token)
@@ -31,9 +39,9 @@
     }
     return self;
 }
+
 -(void)requestOAuthAccess
 {
-    
     NSString *urlString = [NSString stringWithFormat:GITHUB_OAUTH_URL,GITHUB_CLIENT_ID,GITHUB_CALLBACK_URI,@"user,repo"];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
 }
@@ -47,8 +55,6 @@
         NSString *postString = [NSString stringWithFormat:@"client_id=%@&client_secret=%@&code=%@", GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, code];
         NSData *postData = [postString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES]; //??
         NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long) [postData length]]; //??
-        NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
-        NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
     
         // setup url request
         NSMutableURLRequest *request = [NSMutableURLRequest new];
@@ -58,7 +64,8 @@
         [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
         [request setHTTPBody:postData];
         
-        NSURLSessionDataTask *postDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSURLSessionDataTask *postDataTask = [self.urlSession dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            
             if (error) {
                 NSLog(@"error: %@", error.description);
             }
@@ -79,11 +86,11 @@
     NSString *tokenResponse = [[NSString alloc] initWithData:responseData encoding:NSASCIIStringEncoding];
     NSArray *tokenComponents = [tokenResponse componentsSeparatedByString:@"&"];
     NSString *accessTokenWithCode = tokenComponents[0];
-    NSArray *access_token_array = [accessTokenWithCode componentsSeparatedByString:@"="]; // Why did we name our instance weird?
+    NSArray *accessTokenArray = [accessTokenWithCode componentsSeparatedByString:@"="]; // Why did we name our instance weird?
     
-    NSLog(@"%@", access_token_array);
+    NSLog(@"%@", accessTokenArray);
     
-    return access_token_array[1];
+    return accessTokenArray[1];
 }
 
 -(NSString *)getCodeFromCallbackURL:(NSURL *)callbackURL
@@ -95,12 +102,12 @@
     return [components lastObject];
 }
 
--(void)retrieveReposForCurrentUser
+-(void)retrieveReposForCurrentUserWithCompletionBlock:(void(^)(NSMutableArray *userRepos))completionBlock
 {
     // Set Parameters
     NSURL *userRepoURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@user/repos", GITHUB_API_URL]];
-    NSURLSessionConfiguration *UserRepoSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *userRepoSession = [NSURLSession sessionWithConfiguration:UserRepoSessionConfiguration];
+    NSURLSessionConfiguration *userRepoSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *userRepoSession = [NSURLSession sessionWithConfiguration:userRepoSessionConfiguration];
    
     // Set Up Request
     NSMutableURLRequest *userRepoRequest = [NSMutableURLRequest new];
@@ -116,22 +123,61 @@
         
         NSLog(@" %@",response.description);
         
-        NSArray *jsonTempArray = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-        
+        NSArray *jsonTempUserRepoArray = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         NSMutableArray *userRepos = [NSMutableArray new];
         
-        for (NSDictionary *repoDictionary in jsonTempArray) {
-            Repo *newRepo = [Repo new];
-            newRepo.name = [repoDictionary objectForKey:@"name"];
-            newRepo.url = [repoDictionary objectForKey:@"url"];
-            [userRepos addObject:newRepo];
-        }
+        [jsonTempUserRepoArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            Repo *newUserRepo = [Repo new];
+            newUserRepo.name = [obj objectForKey:@"name"];
+            newUserRepo.url = [obj objectForKey:@"url"];
+            [userRepos addObject:newUserRepo];
+        }];
         
-        [self.delegate assignDownloadedRepoArrayToRepos:userRepos];
+        completionBlock(userRepos);
         
     }];
     
     [userRepoDataTask resume];
+}
+
+-(void)retrieveReposFromSearchQuery:(NSString *)searchQuery WithCompletionBlock:(void(^)(NSMutableArray *searchRepos))completionBlock
+{
+    // Set Parameters
+    NSURL *searchRepoURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@search/repositories?q=%@", GITHUB_API_URL, searchQuery]];
+    NSURLSessionConfiguration *searchRepoSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *searchRepoSession = [NSURLSession sessionWithConfiguration:searchRepoSessionConfiguration];
+    
+    // Set Up Request
+    NSMutableURLRequest *searchRepoRequest = [NSMutableURLRequest new];
+    [searchRepoRequest setURL:searchRepoURL];
+    [searchRepoRequest setHTTPMethod:@"GET"];
+    [searchRepoRequest setValue:[NSString stringWithFormat:@"token %@", self.token] forHTTPHeaderField:@"Authorization"];
+    
+    // Set Up Data Task
+    NSURLSessionDataTask *searchRepoDataTask = [searchRepoSession dataTaskWithRequest:searchRepoRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error) {
+            NSLog(@"error: %@",error.description);
+        }
+        
+        NSLog(@"%@",response.description);
+        
+        NSDictionary *jsonTempSearchRepoDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        
+        NSArray *jsonTempSearchRepoArray = [jsonTempSearchRepoDictionary objectForKey:@"items"];
+        
+        NSMutableArray *searchRepos = [NSMutableArray new];
+        
+        [jsonTempSearchRepoArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            Repo *newSearchRepo = [Repo new];
+            newSearchRepo.name = [obj objectForKey:@"name"];
+            newSearchRepo.url = [obj objectForKey:@"url"];
+            [searchRepos addObject:newSearchRepo];
+        }];
+        
+        completionBlock (searchRepos);
+    }];
+    
+    [searchRepoDataTask resume];
 }
 
 @end

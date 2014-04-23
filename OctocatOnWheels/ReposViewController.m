@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 #import "Repo.h"
 
-@interface ReposViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, NSURLSessionDelegate, NetworkControllerDelegate>
+@interface ReposViewController () <UITableViewDataSource, UITableViewDelegate, NSURLSessionDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *reposTableView;
 
@@ -30,9 +30,9 @@
     self.appDelegate = [UIApplication sharedApplication].delegate;
     self.networkController = self.appDelegate.networkController;
     
-    [self.networkController retrieveReposForCurrentUser];
-    
-    self.networkController.delegate = self;
+    [self.networkController retrieveReposForCurrentUserWithCompletionBlock:^(NSMutableArray *repos) {
+        [self assignDownloadedRepoArrayToRepos:repos];
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,9 +49,10 @@
 -(void)assignDownloadedRepoArrayToRepos:(NSMutableArray *)repoArray
 {
     self.repos = repoArray;
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
         [self.reposTableView reloadData];
-    }];
+    });
 }
 
 # pragma mark - UITableView Methods
@@ -63,26 +64,13 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *repoCell = [tableView dequeueReusableCellWithIdentifier:@"RepoCell" forIndexPath:indexPath];
+    UITableViewCell *userRepoCell = [tableView dequeueReusableCellWithIdentifier:@"RepoCell" forIndexPath:indexPath];
     
     Repo *repo = self.repos[indexPath.row];
     
-    repoCell.textLabel.text = repo.name;
+    userRepoCell.textLabel.text = repo.name;
     
-    return repoCell;
+    return userRepoCell;
 }
-
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -17,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 // Properties
-@property (strong, nonatomic) NSArray *arrayOfViewControllers;
+@property (strong, nonatomic) NSArray *viewControllers;
 @property (strong, nonatomic) UIViewController *topViewController;
 @property (strong, nonatomic) UITapGestureRecognizer *tapToClose;
 
@@ -36,6 +36,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.userInteractionEnabled = NO;
+    self.tapToClose = [UITapGestureRecognizer new];
     
     [self setupChildViewControllers];
     [self setupDragRecognizer];
@@ -56,11 +57,11 @@
     searchViewController.title = @"Search";
     searchViewController.burgerDelegate = self;
     
-    self.arrayOfViewControllers = @[repoViewController, userViewController, searchViewController];
+    self.viewControllers = @[repoViewController, userViewController, searchViewController];
     
     
     // Assign topViewController
-    self.topViewController = self.arrayOfViewControllers[0];
+    self.topViewController = self.viewControllers[0];
     
     [self addChildViewController:self.topViewController];
     [self.view addSubview:self.topViewController.view];
@@ -160,7 +161,7 @@
         [self.topViewController removeFromParentViewController];
         
         // add new view controller
-        self.topViewController = self.arrayOfViewControllers[indexPath.row];
+        self.topViewController = self.viewControllers[indexPath.row];
         [self addChildViewController:self.topViewController];
         self.topViewController.view.frame = offScreen;
         [self.view addSubview:self.topViewController.view];
@@ -177,14 +178,11 @@
         self.topViewController.view.frame = CGRectMake(self.view.frame.size.width * .75, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
         
     } completion:^(BOOL finished) {
-        
         if (finished) {
-            
-            self.tapToClose = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeMenu:)];
+            [self.tapToClose addTarget:self action:@selector(closeMenu:)];
             [self.topViewController.view addGestureRecognizer:self.tapToClose];
             self.menuIsOpen = YES;
             self.tableView.userInteractionEnabled = YES;
-            
         }
     }];
 }
@@ -205,13 +203,13 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.arrayOfViewControllers.count;
+    return self.viewControllers.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    cell.textLabel.text = [self.arrayOfViewControllers[indexPath.row] title];
+    cell.textLabel.text = [self.viewControllers[indexPath.row] title];
     return cell;
 }
 

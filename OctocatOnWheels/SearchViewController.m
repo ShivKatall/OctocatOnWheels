@@ -8,14 +8,15 @@
 
 #import "SearchViewController.h"
 #import "AppDelegate.h"
+#import "Repo.h"
 
 @interface SearchViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, NSURLSessionDelegate>
 
 // Outlets
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UITableView *searchTableView;
 
-@property (strong, nonatomic) NSMutableArray *arrayOfRepos;
+@property (strong, nonatomic) NSMutableArray *searchRepos;
 
 @property (weak, nonatomic) AppDelegate *appDelegate;
 @property (weak, nonatomic) NetworkController *networkController;
@@ -32,40 +33,16 @@
     self.appDelegate = [UIApplication sharedApplication].delegate;
     self.networkController = self.appDelegate.networkController;
     
-//    self.tableView.delegate = self;
-//    self.tableView.dataSource = self;
-//    self.arrayOfRepos = [NSMutableArray new];
-//    
-//    [self.networkController requestOAuthAccess];
+    self.searchTableView.delegate = self;
+    self.searchTableView.dataSource = self;
+    self.searchRepos = [NSMutableArray new];
+    
+    [self.networkController requestOAuthAccess];
 }
-
-//- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
-//{
-//    NSDictionary *repo = _arrayOfRepos[indexPath.row];
-//    NSInteger repoID = [[repo objectForKey:@"id"] integerValue];
-//    
-//    NSURL *deleteURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.github.com//search/repositories, repoID]];
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:deleteURL];
-//    [request setHTTPMethod:@"DELETE"];
-//    
-//    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-//    
-//    NSURLSessionDataTask *deleteTask = [session dataTaskWithRequest:request
-//                                                  completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-//                                                      NSLog(@"Response : %@", response);
-//                                                      if (error) {
-//                                                          NSLog(@"Error Occured: %@", error.localizedDescription);
-//                                                      } else {
-//                                                          [self.tableView reloadData];
-//                                                      }
-//                                                  }];
-//    [deleteTask resume];
-//}
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)burgerPressed:(id)sender
@@ -73,30 +50,66 @@
     [self.burgerDelegate handleBurgerPressed];
 }
 
+-(void)assignDownloadedRepoArrayToRepos:(NSMutableArray *)searchRepos
+{
+    self.searchRepos = searchRepos;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.searchTableView reloadData];
+    });
+}
+
+# pragma mark - UITableView Methods
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.arrayOfRepos.count;
+    return self.searchRepos.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *searchCell = [tableView dequeueReusableCellWithIdentifier:@"SearchCell" forIndexPath:indexPath];
-    NSDictionary *repoDictionary = self.arrayOfRepos[indexPath.row];
     
-    searchCell.textLabel.text = repoDictionary[@"name"];
+    Repo *repo = self.searchRepos[indexPath.row];
+    
+    searchCell.textLabel.text = repo.name;
     
     return searchCell;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    NSDictionary *repo = self.searchRepos[indexPath.row];
+    NSInteger repoID = [[repo objectForKey:@"id"] integerValue];
+    
+    NSURL *deleteURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.github.com//search/repositories", repoID]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:deleteURL];
+    [request setHTTPMethod:@"DELETE"];
+    
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    
+    NSURLSessionDataTask *deleteTask = [session dataTaskWithRequest:request
+                                                  completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                      NSLog(@"Response : %@", response);
+                                                      if (error) {
+                                                          NSLog(@"Error Occured: %@", error.localizedDescription);
+                                                      } else {
+                                                          [self.searchTableView reloadData];
+                                                      }
+                                                  }];
+    [deleteTask resume];
 }
-*/
+
+
+# pragma mark - UISearchBar Methods
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [self.networkController retrieveReposFromSearchQuery:searchBar.text WithCompletionBlock:^(NSMutableArray *searchRepos) {
+            [self assignDownloadedRepoArrayToRepos:searchRepos];
+    }];
+    
+    [searchBar resignFirstResponder];
+}
 
 @end
