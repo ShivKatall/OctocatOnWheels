@@ -127,7 +127,7 @@
             [userRepos addObject:newRepo];
         }
         
-        [self.delegate reposDoneDownloading:userRepos];
+        [self.delegate assignDownloadedRepoArrayToRepos:userRepos];
         
     }];
     

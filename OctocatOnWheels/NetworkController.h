@@ -10,7 +10,7 @@
 
 @protocol NetworkControllerDelegate <NSObject>
 
--(void)reposDoneDownloading:(NSMutableArray *)repoArray;
+-(void)assignDownloadedRepoArrayToRepos:(NSMutableArray *)repoArray;
 
 @end
 

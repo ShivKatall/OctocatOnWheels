@@ -14,7 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *reposTableView;
 
-@property (strong, nonatomic) NSMutableArray *arrayOfRepos;
+@property (strong, nonatomic) NSMutableArray *repos;
 
 @property (weak, nonatomic) AppDelegate *appDelegate;
 @property (weak, nonatomic) NetworkController *networkController;
@@ -46,9 +46,9 @@
     [self.burgerDelegate handleBurgerPressed];
 }
 
--(void)reposDoneDownloading:(NSMutableArray *)repoArray
+-(void)assignDownloadedRepoArrayToRepos:(NSMutableArray *)repoArray
 {
-    self.arrayOfRepos = repoArray;
+    self.repos = repoArray;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self.reposTableView reloadData];
     }];
@@ -58,14 +58,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.arrayOfRepos.count;
+    return self.repos.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *repoCell = [tableView dequeueReusableCellWithIdentifier:@"RepoCell" forIndexPath:indexPath];
     
-    Repo *repo = self.arrayOfRepos[indexPath.row];
+    Repo *repo = self.repos[indexPath.row];
     
     repoCell.textLabel.text = repo.name;
     
