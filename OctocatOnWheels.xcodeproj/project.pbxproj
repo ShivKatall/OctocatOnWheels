@@ -27,6 +27,10 @@
 		3D2DCAC019057EE600677825 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2DCABF19057EE600677825 /* SearchViewController.m */; };
 		3DA293A4190702DE005F179C /* NetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA293A3190702DE005F179C /* NetworkController.m */; };
 		3DA293A719072A36005F179C /* Repo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA293A619072A36005F179C /* Repo.m */; };
+		3DE45FFB1909759E002AF3C0 /* UIColor+ColorScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE45FFA1909759E002AF3C0 /* UIColor+ColorScheme.m */; };
+		3DE4604819098CB6002AF3C0 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE4604719098CB6002AF3C0 /* User.m */; };
+		3DE4604B1909B925002AF3C0 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE4604A1909B925002AF3C0 /* UserCell.m */; };
+		3DE460501909C743002AF3C0 /* BlankFace.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3DE4604F1909C743002AF3C0 /* BlankFace.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +75,13 @@
 		3DA293A3190702DE005F179C /* NetworkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkController.m; sourceTree = "<group>"; };
 		3DA293A519072A36005F179C /* Repo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Repo.h; sourceTree = "<group>"; };
 		3DA293A619072A36005F179C /* Repo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Repo.m; sourceTree = "<group>"; };
+		3DE45FF91909759E002AF3C0 /* UIColor+ColorScheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ColorScheme.h"; sourceTree = "<group>"; };
+		3DE45FFA1909759E002AF3C0 /* UIColor+ColorScheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ColorScheme.m"; sourceTree = "<group>"; };
+		3DE4604619098CB6002AF3C0 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		3DE4604719098CB6002AF3C0 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		3DE460491909B925002AF3C0 /* UserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCell.h; sourceTree = "<group>"; };
+		3DE4604A1909B925002AF3C0 /* UserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCell.m; sourceTree = "<group>"; };
+		3DE4604F1909C743002AF3C0 /* BlankFace.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BlankFace.jpg; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,19 +144,9 @@
 				3D2DCA8F19057D4600677825 /* AppDelegate.h */,
 				3D2DCA9019057D4600677825 /* AppDelegate.m */,
 				3D2DCA9219057D4600677825 /* Main.storyboard */,
-				3DA293A2190702DE005F179C /* NetworkController.h */,
-				3DA293A3190702DE005F179C /* NetworkController.m */,
-				3D2DCAB519057DCB00677825 /* RootMenuViewController.h */,
-				3D2DCAB619057DCB00677825 /* RootMenuViewController.m */,
-				3D2DCAB819057E9400677825 /* ReposViewController.h */,
-				3D2DCAB919057E9400677825 /* ReposViewController.m */,
-				3D2DCABB19057ED500677825 /* UsersViewController.h */,
-				3D2DCABC19057ED500677825 /* UsersViewController.m */,
-				3D2DCABE19057EE600677825 /* SearchViewController.h */,
-				3D2DCABF19057EE600677825 /* SearchViewController.m */,
-				3D1F00991905C2F200BFE288 /* BurgerButtonProtocol.h */,
-				3DA293A519072A36005F179C /* Repo.h */,
-				3DA293A619072A36005F179C /* Repo.m */,
+				3DE4604C1909BBAB002AF3C0 /* Model */,
+				3DE4604E1909BC01002AF3C0 /* View */,
+				3DE4604D1909BBF2002AF3C0 /* Controller */,
 				3D2DCA9819057D4600677825 /* Images.xcassets */,
 				3D2DCA8719057D4600677825 /* Supporting Files */,
 			);
@@ -155,6 +156,7 @@
 		3D2DCA8719057D4600677825 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3DE4604F1909C743002AF3C0 /* BlankFace.jpg */,
 				3D1F00971905C25600BFE288 /* burger-icon.png */,
 				3D2DCA8819057D4600677825 /* OctocatOnWheels-Info.plist */,
 				3D2DCA8919057D4600677825 /* InfoPlist.strings */,
@@ -180,6 +182,46 @@
 				3D2DCAA819057D4700677825 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3DE4604C1909BBAB002AF3C0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3DE45FF91909759E002AF3C0 /* UIColor+ColorScheme.h */,
+				3DE45FFA1909759E002AF3C0 /* UIColor+ColorScheme.m */,
+				3DA293A519072A36005F179C /* Repo.h */,
+				3DA293A619072A36005F179C /* Repo.m */,
+				3DE4604619098CB6002AF3C0 /* User.h */,
+				3DE4604719098CB6002AF3C0 /* User.m */,
+				3DE460491909B925002AF3C0 /* UserCell.h */,
+				3DE4604A1909B925002AF3C0 /* UserCell.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		3DE4604D1909BBF2002AF3C0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3DA293A2190702DE005F179C /* NetworkController.h */,
+				3DA293A3190702DE005F179C /* NetworkController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		3DE4604E1909BC01002AF3C0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3D2DCAB519057DCB00677825 /* RootMenuViewController.h */,
+				3D2DCAB619057DCB00677825 /* RootMenuViewController.m */,
+				3D2DCAB819057E9400677825 /* ReposViewController.h */,
+				3D2DCAB919057E9400677825 /* ReposViewController.m */,
+				3D2DCABB19057ED500677825 /* UsersViewController.h */,
+				3D2DCABC19057ED500677825 /* UsersViewController.m */,
+				3D2DCABE19057EE600677825 /* SearchViewController.h */,
+				3D2DCABF19057EE600677825 /* SearchViewController.m */,
+				3D1F00991905C2F200BFE288 /* BurgerButtonProtocol.h */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,6 +303,7 @@
 				3D2DCA9919057D4600677825 /* Images.xcassets in Resources */,
 				3D2DCA8B19057D4600677825 /* InfoPlist.strings in Resources */,
 				3D2DCA9419057D4600677825 /* Main.storyboard in Resources */,
+				3DE460501909C743002AF3C0 /* BlankFace.jpg in Resources */,
 				3D1F00981905C25600BFE288 /* burger-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,13 +323,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DE4604819098CB6002AF3C0 /* User.m in Sources */,
 				3D2DCABA19057E9400677825 /* ReposViewController.m in Sources */,
 				3D2DCA9119057D4600677825 /* AppDelegate.m in Sources */,
 				3D2DCABD19057ED500677825 /* UsersViewController.m in Sources */,
 				3D2DCA8D19057D4600677825 /* main.m in Sources */,
 				3DA293A4190702DE005F179C /* NetworkController.m in Sources */,
 				3D2DCAB719057DCB00677825 /* RootMenuViewController.m in Sources */,
+				3DE45FFB1909759E002AF3C0 /* UIColor+ColorScheme.m in Sources */,
 				3D2DCAC019057EE600677825 /* SearchViewController.m in Sources */,
+				3DE4604B1909B925002AF3C0 /* UserCell.m in Sources */,
 				3DA293A719072A36005F179C /* Repo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

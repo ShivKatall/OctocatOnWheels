@@ -10,6 +10,7 @@
 #import "ReposViewController.h"
 #import "UsersViewController.h"
 #import "SearchViewController.h"
+#import "UIColor+ColorScheme.h"
 
 @interface RootMenuViewController () <UIGestureRecognizerDelegate, UITableViewDataSource, UITableViewDelegate, BurgerButtonProtocol>
 
@@ -209,7 +210,10 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    
     cell.textLabel.text = [self.viewControllers[indexPath.row] title];
+    cell.textLabel.textColor = [UIColor midnightBlueColor];
+    
     return cell;
 }
 

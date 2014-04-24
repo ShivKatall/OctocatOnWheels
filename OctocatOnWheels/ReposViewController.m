@@ -9,9 +9,12 @@
 #import "ReposViewController.h"
 #import "AppDelegate.h"
 #import "Repo.h"
+#import "UIColor+ColorScheme.h"
 
 @interface ReposViewController () <UITableViewDataSource, UITableViewDelegate, NSURLSessionDelegate>
 
+
+@property (strong, nonatomic) IBOutlet UIView *reposView;
 @property (weak, nonatomic) IBOutlet UITableView *reposTableView;
 
 @property (strong, nonatomic) NSMutableArray *repos;
@@ -26,6 +29,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.reposView setBackgroundColor:[UIColor belizeHoleColor]];
+    [self.reposTableView setBackgroundColor:[UIColor belizeHoleColor]];
     
     self.appDelegate = [UIApplication sharedApplication].delegate;
     self.networkController = self.appDelegate.networkController;
@@ -69,6 +75,8 @@
     Repo *repo = self.repos[indexPath.row];
     
     userRepoCell.textLabel.text = repo.name;
+    userRepoCell.textLabel.textColor = [UIColor midnightBlueColor];
+    userRepoCell.backgroundColor = [UIColor peterRiverColor];
     
     return userRepoCell;
 }

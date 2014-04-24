@@ -9,10 +9,12 @@
 #import "SearchViewController.h"
 #import "AppDelegate.h"
 #import "Repo.h"
+#import "UIColor+ColorScheme.h"
 
 @interface SearchViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, NSURLSessionDelegate>
 
 // Outlets
+@property (strong, nonatomic) IBOutlet UIView *searchView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UITableView *searchTableView;
 
@@ -30,6 +32,10 @@
 {
     [super viewDidLoad];
 
+    [self.searchView setBackgroundColor:[UIColor nephritisColor]];
+    [self.searchTableView setBackgroundColor:[UIColor nephritisColor]];
+    [self.searchBar setTintColor:[UIColor nephritisColor]];
+    
     self.appDelegate = [UIApplication sharedApplication].delegate;
     self.networkController = self.appDelegate.networkController;
     
@@ -73,6 +79,9 @@
     Repo *repo = self.searchRepos[indexPath.row];
     
     searchCell.textLabel.text = repo.name;
+    searchCell.textLabel.textColor = [UIColor midnightBlueColor];
+    
+    searchCell.backgroundColor = [UIColor emeraldColor];
     
     return searchCell;
 }

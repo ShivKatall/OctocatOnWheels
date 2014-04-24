@@ -8,6 +8,7 @@
 
 #import "NetworkController.h"
 #import "Repo.h"
+#import "User.h"
 
 #define GITHUB_CLIENT_ID @"1426a10e13a721ed4441"
 #define GITHUB_CLIENT_SECRET @"051eb92409fed9160fb5741c4bcb6bc6543c8adc"
@@ -28,7 +29,7 @@
     self = [super init];
     if (self)
     {
-        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+//        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
         
         self.token = [[NSUserDefaults standardUserDefaults] objectForKey:@"oauthtoken"];
         
@@ -86,7 +87,7 @@
     NSString *tokenResponse = [[NSString alloc] initWithData:responseData encoding:NSASCIIStringEncoding];
     NSArray *tokenComponents = [tokenResponse componentsSeparatedByString:@"&"];
     NSString *accessTokenWithCode = tokenComponents[0];
-    NSArray *accessTokenArray = [accessTokenWithCode componentsSeparatedByString:@"="]; // Why did we name our instance weird?
+    NSArray *accessTokenArray = [accessTokenWithCode componentsSeparatedByString:@"="];
     
     NSLog(@"%@", accessTokenArray);
     
@@ -101,6 +102,8 @@
     
     return [components lastObject];
 }
+
+#pragma mark - ReposViewController Network Methods
 
 -(void)retrieveReposForCurrentUserWithCompletionBlock:(void(^)(NSMutableArray *userRepos))completionBlock
 {
@@ -139,6 +142,50 @@
     
     [userRepoDataTask resume];
 }
+
+
+#pragma mark - UsersViewController Network Methods
+
+-(void)retrieveFollowedUsersForCurrentUserWithCompletionBlock:(void(^)(NSMutableArray *followedUsers))completionBlock
+{
+    // Set Parameters
+    NSURL *followedUserURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@user/following",  GITHUB_API_URL]]; // find this
+    NSURLSessionConfiguration *followedUserSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *followedUserSession = [NSURLSession sessionWithConfiguration:followedUserSessionConfiguration];
+    
+    // Set Up Request
+    NSMutableURLRequest *followedUserRequest = [NSMutableURLRequest new];
+    [followedUserRequest setURL:followedUserURL];
+    [followedUserRequest setHTTPMethod:@"GET"];
+    [followedUserRequest setValue:[NSString stringWithFormat:@"token %@", self.token] forHTTPHeaderField:@"Authorization"];
+    
+    // Set Up Data Task
+    NSURLSessionDataTask *followedUserDataTask = [followedUserSession dataTaskWithRequest:followedUserRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error) {
+            NSLog(@"error: %@", error.description);
+        }
+        
+        NSLog(@" %@",response.description);
+        
+        NSArray *jsonTempFollowedUserArray = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        NSMutableArray *followedUsers = [NSMutableArray new];
+        
+        [jsonTempFollowedUserArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            User *newFollowedUser = [User new];
+            newFollowedUser.name = [obj objectForKey:@"login"];
+            newFollowedUser.url = [obj objectForKey:@"url"];
+            newFollowedUser.avatarURLString = [obj objectForKey:@"avatar_url"];
+            [followedUsers addObject:newFollowedUser];
+        }];
+        
+        completionBlock(followedUsers);
+    }];
+    
+    [followedUserDataTask resume];
+}
+
+
+#pragma mark - SearchViewController Network Methods
 
 -(void)retrieveReposFromSearchQuery:(NSString *)searchQuery WithCompletionBlock:(void(^)(NSMutableArray *searchRepos))completionBlock
 {

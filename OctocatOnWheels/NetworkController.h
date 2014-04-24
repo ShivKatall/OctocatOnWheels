@@ -16,5 +16,7 @@
 -(void)handleOAuthCallbackWithURL:(NSURL *)url;
 -(void)retrieveReposForCurrentUserWithCompletionBlock:(void(^)(NSMutableArray *userRepos))completionBlock;
 -(void)retrieveReposFromSearchQuery:(NSString *)searchQuery WithCompletionBlock:(void(^)(NSMutableArray *searchRepos))completionBlock;
+-(void)retrieveFollowedUsersForCurrentUserWithCompletionBlock:(void(^)(NSMutableArray *followedUsers))completionBlock;
+
 
 @end

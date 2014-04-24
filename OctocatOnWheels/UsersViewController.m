@@ -7,8 +7,22 @@
 //
 
 #import "UsersViewController.h"
+#import "AppDelegate.h"
+#import "UIColor+ColorScheme.h"
+#import "User.h"
+#import "UserCell.h"
 
-@interface UsersViewController ()
+@interface UsersViewController () <UICollectionViewDataSource, UICollectionViewDelegate, NSURLSessionDelegate>
+
+@property (strong, nonatomic) IBOutlet UIView *usersView;
+@property (weak, nonatomic) IBOutlet UICollectionView *usersCollectionView;
+
+@property (strong, nonatomic) NSMutableArray *followedUsers;
+
+@property (strong, nonatomic) NSOperationQueue *imageQueue;
+
+@property (weak, nonatomic) AppDelegate *appDelegate;
+@property (weak, nonatomic) NetworkController *networkController;
 
 @end
 
@@ -17,7 +31,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    [self.usersView setBackgroundColor:[UIColor greenSeaColor]];
+    [self.usersCollectionView setBackgroundColor:[UIColor greenSeaColor]];
+    
+    self.usersCollectionView.delegate = self;
+    self.usersCollectionView.dataSource = self;
+    
+    self.imageQueue = [NSOperationQueue new];
+    
+    self.appDelegate = [UIApplication sharedApplication].delegate;
+    self.networkController = self.appDelegate.networkController;
+
+    [self.networkController retrieveFollowedUsersForCurrentUserWithCompletionBlock:^(NSMutableArray *followedUsers) {
+        [self assignDownloadedUserArrayToFollowedUsers:followedUsers];
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -30,15 +58,47 @@
     [self.burgerDelegate handleBurgerPressed];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+-(void)assignDownloadedUserArrayToFollowedUsers:(NSMutableArray *)userArray
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    self.followedUsers = userArray;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.usersCollectionView reloadData];
+    });
 }
-*/
+
+
+# pragma mark - UICollectionView Methods
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return self.followedUsers.count;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UserCell *userCell = [collectionView dequeueReusableCellWithReuseIdentifier:USER_CELL_IDENTIFIER forIndexPath:indexPath];
+    NSLog(@" cellforitem");
+        User *user = self.followedUsers[indexPath.item];
+    
+    
+        if (user.avatarImage){
+            userCell.userImage.image = user.avatarImage;
+        } else {
+            NSLog(@"we are here");
+            userCell.userImage.image = [UIImage imageNamed:@"BlankFace"];
+            [user downloadAvatarOnQueue:_imageQueue withCompletionBlock:^{
+                
+                [collectionView reloadItemsAtIndexPaths:@[indexPath]];
+            }];
+        }
+    userCell.userName.text = user.name;
+    
+    userCell.userName.textColor = [UIColor midnightBlueColor];
+    userCell.backgroundColor = [UIColor turquoiseColor];
+    
+    
+    return userCell;
+}
 
 @end
