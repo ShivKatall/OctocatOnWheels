@@ -29,12 +29,13 @@
     self = [super init];
     if (self)
     {
-//        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        
+        self.urlSession = [NSURLSession sessionWithConfiguration:configuration];
         
         self.token = [[NSUserDefaults standardUserDefaults] objectForKey:@"oauthtoken"];
         
-        if (!self.token)
-        {
+        if (!self.token) {
             [self performSelector:@selector(requestOAuthAccess) withObject:nil afterDelay:.1];
         }
     }

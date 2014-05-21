@@ -36,9 +36,10 @@
     self.appDelegate = [UIApplication sharedApplication].delegate;
     self.networkController = self.appDelegate.networkController;
     
-    [self.networkController retrieveReposForCurrentUserWithCompletionBlock:^(NSMutableArray *repos) {
-        [self assignDownloadedRepoArrayToRepos:repos];
-    }];
+//    [self.networkController retrieveReposForCurrentUserWithCompletionBlock:^(NSMutableArray *repos) {
+//        
+//        [self assignDownloadedRepoArrayToRepos:repos];
+//    }];
 }
 
 - (void)didReceiveMemoryWarning

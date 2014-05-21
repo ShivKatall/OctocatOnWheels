@@ -47,15 +47,17 @@
 {
     // Assigning View Controllers
     ReposViewController *repoViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Repos"];
-    repoViewController.title = @"My Repos";
+    repoViewController.title = [NSString stringWithFormat:NSLocalizedString(@"My Repos", nil)];
+    
+    
     repoViewController.burgerDelegate = self;
     
     UsersViewController *userViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Users"];
-    userViewController.title = @"Following";
+    userViewController.title = [NSString stringWithFormat:NSLocalizedString(@"Following", nil)];
     userViewController.burgerDelegate = self;
     
     SearchViewController *searchViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Search"];
-    searchViewController.title = @"Search";
+    searchViewController.title = [NSString stringWithFormat:NSLocalizedString(@"Search", nil)];
     searchViewController.burgerDelegate = self;
     
     self.viewControllers = @[repoViewController, userViewController, searchViewController];

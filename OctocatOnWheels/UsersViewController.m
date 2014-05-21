@@ -44,6 +44,7 @@
     self.networkController = self.appDelegate.networkController;
 
     [self.networkController retrieveFollowedUsersForCurrentUserWithCompletionBlock:^(NSMutableArray *followedUsers) {
+        
         [self assignDownloadedUserArrayToFollowedUsers:followedUsers];
     }];
 }
@@ -86,7 +87,6 @@
             userCell.userImage.image = user.avatarImage;
         } else {
             NSLog(@"we are here");
-            userCell.userImage.image = [UIImage imageNamed:@"BlankFace"];
             [user downloadAvatarOnQueue:_imageQueue withCompletionBlock:^{
                 
                 [collectionView reloadItemsAtIndexPaths:@[indexPath]];
